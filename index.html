@@ -1,552 +1,255 @@
-/* 기본 스타일 리셋 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9faff;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 버튼 스타일 */
-.btn {
-    display: inline-block;
-    padding: 10px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: #3A56E4;
-    color: white;
-    border: 2px solid #3A56E4;
-}
-
-.btn-primary:hover {
-    background-color: #2A46D4;
-    border-color: #2A46D4;
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: #3A56E4;
-    border: 2px solid #3A56E4;
-}
-
-.btn-secondary:hover {
-    background-color: rgba(58, 86, 228, 0.1);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: #3A56E4;
-    border: 2px solid transparent;
-    text-decoration: underline;
-}
-
-.btn-large {
-    padding: 15px 40px;
-    font-size: 18px;
-}
-
-/* 네비게이션 바 */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.logo img {
-    height: 40px;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: #3A56E4;
-}
-
-.auth-buttons .btn {
-    margin-left: 10px;
-}
-
-/* 히어로 섹션 */
-.hero {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #1A2B50 0%, #3A56E4 100%);
-    color: white;
-}
-
-.hero-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.hero-content {
-    flex: 1;
-    max-width: 600px;
-}
-
-.hero h1 {
-    font-size: 42px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.hero .subheading {
-    font-size: 20px;
-    color: #9FB4FF;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.hero .description {
-    margin-bottom: 30px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.main-hero-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-/* 섹션 제목 */
-.section-title {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 15px;
-    color: #1A2B50;
-}
-
-.section-subtitle {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 40px;
-    color: #555;
-}
-
-/* 특징 섹션 */
-.features {
-    padding: 80px 0;
-    background-color: #fff;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.feature-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.feature-icon {
-    margin-bottom: 20px;
-}
-
-.feature-img {
-    height: 150px;
-    width: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    object-fit: cover;
-}
-
-.feature-card h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #1A2B50;
-}
-
-.feature-card h4 {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #3A56E4;
-    font-weight: 500;
-}
-
-/* NFT Showcase 섹션 */
-.nft-showcase {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #f7f9ff 0%, #e0e6ff 100%);
-}
-
-.nft-showcase .container {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.showcase-content {
-    flex: 1;
-}
-
-.showcase-content h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #1A2B50;
-}
-
-.showcase-content p {
-    margin-bottom: 20px;
-    color: #555;
-}
-
-.key-benefits {
-    margin: 25px 0;
-    padding-left: 20px;
-}
-
-.key-benefits li {
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.key-benefits li::before {
-    content: "✓";
-    color: #3A56E4;
-    position: absolute;
-    left: -20px;
-}
-
-.showcase-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.showcase-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* How It Works 섹션 */
-.how-it-works {
-    padding: 80px 0;
-    background-color: #fff;
-}
-
-.steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.step {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    position: relative;
-    text-align: center;
-}
-
-.step-number {
-    position: absolute;
-    top: -15px;
-    left: 30px;
-    width: 30px;
-    height: 30px;
-    background: #3A56E4;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-.step h3 {
-    margin-bottom: 15px;
-    color: #1A2B50;
-}
-
-.step-img {
-    margin-top: 20px;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Team Section */
-.team-section {
-    padding: 80px 0;
-    background-color: #f7f9ff;
-    text-align: center;
-}
-
-.team-image-container {
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-.team-img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.team-description {
-    max-width: 700px;
-    margin: 0 auto 30px;
-    color: #555;
-}
-
-/* 통계 섹션 */
-.statistics {
-    padding: 60px 0;
-    background-color: #3A56E4;
-    color: white;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    font-size: 16px;
-    opacity: 0.9;
-}
-
-/* 뉴스레터 섹션 */
-.newsletter {
-    padding: 80px 0;
-    background-color: #1A2B50;
-    color: white;
-    text-align: center;
-}
-
-.newsletter h2 {
-    margin-bottom: 30px;
-    font-size: 28px;
-}
-
-.newsletter-form {
-    display: flex;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.newsletter-form input {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    font-size: 16px;
-}
-
-.newsletter-form button {
-    border-radius: 0 5px 5px 0;
-    padding: 0 25px;
-    border: none;
-}
-
-/* Bottom CTA */
-.bottom-cta {
-    padding: 80px 0;
-    text-align: center;
-    background: linear-gradient(135deg, #e0e6ff 0%, #f5f7ff 100%);
-}
-
-.bottom-cta h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: #1A2B50;
-}
-
-/* Footer */
-footer {
-    background-color: #1A2B50;
-    color: #fff;
-    padding: 60px 0 30px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-logo {
-    height: 40px;
-    margin-bottom: 20px;
-}
-
-.footer-column h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-.footer-column ul {
-    list-style: none;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-column ul li a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon img {
-    height: 24px;
-    width: 24px;
-    transition: opacity 0.3s ease;
-}
-
-.social-icon:hover img {
-    opacity: 0.8;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 992px) {
-    .hero-container, .nft-showcase .container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .hero-content, .showcase-content {
-        margin-bottom: 40px;
-        max-width: 100%;
-    }
-    
-    .cta-buttons {
-        justify-content: center;
-    }
-    
-    .key-benefits {
-        display: inline-block;
-        text-align: left;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 32px;
-    }
-    
-    .navbar {
-        flex-direction: column;
-    }
-    
-    .nav-links {
-        margin: 20px 0;
-    }
-    
-    .auth-buttons {
-        margin-top: 20px;
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-    }
-    
-    .newsletter-form input {
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    
-    .newsletter-form button {
-        border-radius: 5px;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAI Vault - Your Secure AI Repository with NFT Keys</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/"><img src="logo.png" alt="SecureAI Vault Logo"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="/login" class="btn btn-secondary">Login</a>
+                <a href="/signup" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>Your Secure AI Vault, Unlocking the Digital Future with NFTs</h1>
+                    <p class="subheading">Protect and manage your personalized AI repository securely with an NFT key.</p>
+                    <p class="description">
+                        SecureAI Vault is an innovative platform utilizing blockchain technology to securely store and manage your AI data and assets. Your unique NFT key serves as the exclusive access to your digital vault, ensuring only you can access your secure environment.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="/generate-key" class="btn btn-primary">Generate NFT Key</a>
+                        <a href="/services" class="btn btn-outline">Explore Services</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- 이미지 1: 금고와 열쇠 이미지 -->
+                    <img src="vault-key.jpg" alt="SecureAI Vault with NFT Key" class="main-hero-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <!-- 이미지 2: 암호화폐 키를 들고 있는 캐릭터 이미지 -->
+                            <img src="nft-key-character.jpg" alt="NFT Access System" class="feature-img">
+                        </div>
+                        <h3>NFT Access System</h3>
+                        <h4>Unique Digital Key</h4>
+                        <p>Your personal NFT provides access to your Vault. It's tradable and records permanent ownership on the blockchain.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <!-- 이미지 7: VALOKI 보안 이미지 -->
+                            <img src="ai-security.jpg" alt="AI Security System" class="feature-img">
+                        </div>
+                        <h3>Powerful AI Security</h3>
+                        <h4>Cutting-Edge Security System</h4>
+                        <p>AI-based multi-layered security protects your data 24/7. Keep your information safe from external intrusions and data breaches.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <!-- 이미지 5: 손바닥 위의 디지털 화폐 이미지 -->
+                            <img src="custom-ai-experience.jpg" alt="Customized AI Experience" class="feature-img">
+                        </div>
+                        <h3>Customized AI Experience</h3>
+                        <h4>Personalized, Scalable AI Environment</h4>
+                        <p>Enjoy an optimized AI experience based on your data and preferences. Your AI space becomes smarter the more you use it.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <!-- 이미지 3: 3D 큐브 구조 이미지 -->
+                            <img src="decentralized-storage.jpg" alt="Decentralized Storage" class="feature-img">
+                        </div>
+                        <h3>Decentralized Repository</h3>
+                        <h4>Distributed Secure Storage</h4>
+                        <p>Store data on a distributed network rather than centralized servers, eliminating single points of failure. Your data is always safe and accessible.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NFT Key Showcase Section (New) -->
+        <section class="nft-showcase">
+            <div class="container">
+                <div class="showcase-content">
+                    <h2>Your NFT Key - The Gateway to Your Secure AI Vault</h2>
+                    <p>Unique, secure, and powered by blockchain technology. Your NFT key is more than just access - it's ownership of your digital future.</p>
+                    <ul class="key-benefits">
+                        <li>Secure blockchain verification</li>
+                        <li>Tradable digital asset</li>
+                        <li>Permanent blockchain record</li>
+                        <li>Customizable security levels</li>
+                    </ul>
+                    <a href="/nft-details" class="btn btn-primary">Learn More About NFT Keys</a>
+                </div>
+                <div class="showcase-image">
+                    <!-- 이미지 4: 이더리움 코인과 금고 이미지 -->
+                    <img src="ethereum-vault.jpg" alt="NFT Key Technology" class="showcase-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Generate NFT Key</h3>
+                        <p>Mint your unique digital key to gain access to your personal AI Vault.</p>
+                        <!-- 이미지 8: NFT 키 생성 이미지 -->
+                        <img src="nft-generation.jpg" alt="Generate NFT Key" class="step-img">
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Set Up Your Vault</h3>
+                        <p>Customize your AI Vault according to your personal preferences and security requirements.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Manage Data</h3>
+                        <p>Securely upload data and utilize AI functions to analyze and manage your information.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Secure Access</h3>
+                        <p>Access your Vault securely anytime, anywhere using your NFT key.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section (New) -->
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">The talented individuals behind SecureAI Vault</p>
+                <div class="team-image-container">
+                    <!-- 이미지 6: 디지털 도시 배경의 팀 이미지 -->
+                    <img src="team-image.jpg" alt="SecureAI Vault Team" class="team-img">
+                </div>
+                <p class="team-description">Our diverse team of blockchain experts, AI specialists, and security professionals are dedicated to building the most secure and innovative AI vault solution in the market.</p>
+                <a href="/about-team" class="btn btn-secondary">Learn More About Our Team</a>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="statistics">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 class="stat-number">10,000+</h3>
+                        <p class="stat-label">AI Vaults Created</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">99.99%</h3>
+                        <p class="stat-label">Uptime</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">100%</h3>
+                        <p class="stat-label">Data Security Record</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">3M+</h3>
+                        <p class="stat-label">NFT Tokens Created</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Receive the latest updates and special NFT discounts</h2>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="bottom-cta">
+            <div class="container">
+                <h2>Start your secure AI world today</h2>
+                <a href="/generate-key" class="btn btn-primary btn-large">Generate NFT Key</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="logo.png" alt="SecureAI Vault Logo" class="footer-logo">
+                    <p>Your secure gateway to personalized AI experiences powered by NFT technology.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/press">Press</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/guides">Guides</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/security">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SecureAI Vault. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><img src="twitter-icon.svg" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="discord-icon.svg" alt="Discord"></a>
+                    <a href="#" class="social-icon"><img src="linkedin-icon.svg" alt="LinkedIn"></a>
+                    <a href="#" class="social-icon"><img src="github-icon.svg" alt="GitHub"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
