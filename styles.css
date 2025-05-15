@@ -1,0 +1,552 @@
+/* 기본 스타일 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9faff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 버튼 스타일 */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #3A56E4;
+    color: white;
+    border: 2px solid #3A56E4;
+}
+
+.btn-primary:hover {
+    background-color: #2A46D4;
+    border-color: #2A46D4;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #3A56E4;
+    border: 2px solid #3A56E4;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(58, 86, 228, 0.1);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #3A56E4;
+    border: 2px solid transparent;
+    text-decoration: underline;
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+/* 네비게이션 바 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #3A56E4;
+}
+
+.auth-buttons .btn {
+    margin-left: 10px;
+}
+
+/* 히어로 섹션 */
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1A2B50 0%, #3A56E4 100%);
+    color: white;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero .subheading {
+    font-size: 20px;
+    color: #9FB4FF;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.hero .description {
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* 섹션 제목 */
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #1A2B50;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+/* 특징 섹션 */
+.features {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    margin-bottom: 20px;
+}
+
+.feature-img {
+    height: 150px;
+    width: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.feature-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #1A2B50;
+}
+
+.feature-card h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #3A56E4;
+    font-weight: 500;
+}
+
+/* NFT Showcase 섹션 */
+.nft-showcase {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f7f9ff 0%, #e0e6ff 100%);
+}
+
+.nft-showcase .container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.showcase-content {
+    flex: 1;
+}
+
+.showcase-content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1A2B50;
+}
+
+.showcase-content p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.key-benefits {
+    margin: 25px 0;
+    padding-left: 20px;
+}
+
+.key-benefits li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.key-benefits li::before {
+    content: "✓";
+    color: #3A56E4;
+    position: absolute;
+    left: -20px;
+}
+
+.showcase-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.showcase-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* How It Works 섹션 */
+.how-it-works {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.step {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    text-align: center;
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    background: #3A56E4;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.step h3 {
+    margin-bottom: 15px;
+    color: #1A2B50;
+}
+
+.step-img {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Team Section */
+.team-section {
+    padding: 80px 0;
+    background-color: #f7f9ff;
+    text-align: center;
+}
+
+.team-image-container {
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.team-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.team-description {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    color: #555;
+}
+
+/* 통계 섹션 */
+.statistics {
+    padding: 60px 0;
+    background-color: #3A56E4;
+    color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* 뉴스레터 섹션 */
+.newsletter {
+    padding: 80px 0;
+    background-color: #1A2B50;
+    color: white;
+    text-align: center;
+}
+
+.newsletter h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+.newsletter-form button {
+    border-radius: 0 5px 5px 0;
+    padding: 0 25px;
+    border: none;
+}
+
+/* Bottom CTA */
+.bottom-cta {
+    padding: 80px 0;
+    text-align: center;
+    background: linear-gradient(135deg, #e0e6ff 0%, #f5f7ff 100%);
+}
+
+.bottom-cta h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #1A2B50;
+}
+
+/* Footer */
+footer {
+    background-color: #1A2B50;
+    color: #fff;
+    padding: 60px 0 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon img {
+    height: 24px;
+    width: 24px;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon:hover img {
+    opacity: 0.8;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 992px) {
+    .hero-container, .nft-showcase .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-content, .showcase-content {
+        margin-bottom: 40px;
+        max-width: 100%;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+    
+    .key-benefits {
+        display: inline-block;
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        margin: 20px 0;
+    }
+    
+    .auth-buttons {
+        margin-top: 20px;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input {
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-form button {
+        border-radius: 5px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
