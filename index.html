@@ -1,255 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureAI Vault - Your Secure AI Repository with NFT Keys</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIVault Membership Codex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: linear-gradient(to right, #f5f7fa, #e2e8f0);
+      color: #2d3748;
+    }
+    h1, h2, h3 {
+      color: #1a202c;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    th, td {
+      border: 1px solid #cbd5e0;
+      padding: 1rem;
+      text-align: center;
+      background: white;
+    }
+    th {
+      background: #edf2f7;
+      font-weight: 600;
+    }
+    .section {
+      margin-bottom: 3rem;
+    }
+    #wallet-connection {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+    }
+    #connectWalletBtn {
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    #connectWalletBtn:hover {
+      background-color: #2c5282;
+    }
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+    ul li::before {
+      content: "\2022";
+      color: #4299e1;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <a href="/"><img src="logo.png" alt="SecureAI Vault Logo"></a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-            <div class="auth-buttons">
-                <a href="/login" class="btn btn-secondary">Login</a>
-                <a href="/signup" class="btn btn-primary">Sign Up</a>
-            </div>
-        </nav>
-    </header>
+  <div id="wallet-connection">
+    <button id="connectWalletBtn">🔗 Connect Wallet</button>
+  </div>
+  <h1>AIVault Membership Codex</h1>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <h1>Your Secure AI Vault, Unlocking the Digital Future with NFTs</h1>
-                    <p class="subheading">Protect and manage your personalized AI repository securely with an NFT key.</p>
-                    <p class="description">
-                        SecureAI Vault is an innovative platform utilizing blockchain technology to securely store and manage your AI data and assets. Your unique NFT key serves as the exclusive access to your digital vault, ensuring only you can access your secure environment.
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="/generate-key" class="btn btn-primary">Generate NFT Key</a>
-                        <a href="/services" class="btn btn-outline">Explore Services</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <!-- 이미지 1: 금고와 열쇠 이미지 -->
-                    <img src="vault-key.jpg" alt="SecureAI Vault with NFT Key" class="main-hero-image">
-                </div>
-            </div>
-        </section>
+  <div class="section">
+    <h2>📘 Membership Tiers</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>NFT Name</th>
+          <th>Access Scope</th>
+          <th>Supply</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Standard</td>
+          <td>AIVault Standard NFT</td>
+          <td>Basic features, limited content</td>
+          <td>Unlimited</td>
+          <td>Beginner tier</td>
+        </tr>
+        <tr>
+          <td>VIP</td>
+          <td>AIVault VIP NFT</td>
+          <td>All content, event priority</td>
+          <td>1,000</td>
+          <td>Community active</td>
+        </tr>
+        <tr>
+          <td>Diamond</td>
+          <td>AIVault Diamond NFT</td>
+          <td>Admin-level access</td>
+          <td>100</td>
+          <td>Voting, rewards, airdrops</td>
+        </tr>
+        <tr>
+          <td>Genesis</td>
+          <td>AIVault Genesis NFT</td>
+          <td>Full access, strategic partner</td>
+          <td>4</td>
+          <td>Brand-level influence</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- Features Section -->
-        <section id="features" class="features">
-            <div class="container">
-                <h2 class="section-title">Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <!-- 이미지 2: 암호화폐 키를 들고 있는 캐릭터 이미지 -->
-                            <img src="nft-key-character.jpg" alt="NFT Access System" class="feature-img">
-                        </div>
-                        <h3>NFT Access System</h3>
-                        <h4>Unique Digital Key</h4>
-                        <p>Your personal NFT provides access to your Vault. It's tradable and records permanent ownership on the blockchain.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <!-- 이미지 7: VALOKI 보안 이미지 -->
-                            <img src="ai-security.jpg" alt="AI Security System" class="feature-img">
-                        </div>
-                        <h3>Powerful AI Security</h3>
-                        <h4>Cutting-Edge Security System</h4>
-                        <p>AI-based multi-layered security protects your data 24/7. Keep your information safe from external intrusions and data breaches.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <!-- 이미지 5: 손바닥 위의 디지털 화폐 이미지 -->
-                            <img src="custom-ai-experience.jpg" alt="Customized AI Experience" class="feature-img">
-                        </div>
-                        <h3>Customized AI Experience</h3>
-                        <h4>Personalized, Scalable AI Environment</h4>
-                        <p>Enjoy an optimized AI experience based on your data and preferences. Your AI space becomes smarter the more you use it.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <!-- 이미지 3: 3D 큐브 구조 이미지 -->
-                            <img src="decentralized-storage.jpg" alt="Decentralized Storage" class="feature-img">
-                        </div>
-                        <h3>Decentralized Repository</h3>
-                        <h4>Distributed Secure Storage</h4>
-                        <p>Store data on a distributed network rather than centralized servers, eliminating single points of failure. Your data is always safe and accessible.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="section">
+    <h2>🎁 Member Benefits</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Benefit</th>
+          <th>Standard</th>
+          <th>VIP</th>
+          <th>Diamond</th>
+          <th>Genesis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Content Access</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>Private Community</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>Event Priority</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>Airdrops & Rewards</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>Voting Rights</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>Special Goods</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>Brand Proposal Rights</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>❌</td>
+          <td>✅</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- NFT Key Showcase Section (New) -->
-        <section class="nft-showcase">
-            <div class="container">
-                <div class="showcase-content">
-                    <h2>Your NFT Key - The Gateway to Your Secure AI Vault</h2>
-                    <p>Unique, secure, and powered by blockchain technology. Your NFT key is more than just access - it's ownership of your digital future.</p>
-                    <ul class="key-benefits">
-                        <li>Secure blockchain verification</li>
-                        <li>Tradable digital asset</li>
-                        <li>Permanent blockchain record</li>
-                        <li>Customizable security levels</li>
-                    </ul>
-                    <a href="/nft-details" class="btn btn-primary">Learn More About NFT Keys</a>
-                </div>
-                <div class="showcase-image">
-                    <!-- 이미지 4: 이더리움 코인과 금고 이미지 -->
-                    <img src="ethereum-vault.jpg" alt="NFT Key Technology" class="showcase-img">
-                </div>
-            </div>
-        </section>
+  <div class="section">
+    <h2>🔐 Access Logic</h2>
+    <ul>
+      <li>Connect your wallet to verify NFT ownership</li>
+      <li>Tier-based routing to Member Dashboards</li>
+      <li>Diamond+ can access Admin Panel</li>
+      <li>Genesis holders unlock full system visibility</li>
+    </ul>
+  </div>
 
-        <!-- How It Works Section -->
-        <section id="how-it-works" class="how-it-works">
-            <div class="container">
-                <h2 class="section-title">How It Works</h2>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Generate NFT Key</h3>
-                        <p>Mint your unique digital key to gain access to your personal AI Vault.</p>
-                        <!-- 이미지 8: NFT 키 생성 이미지 -->
-                        <img src="nft-generation.jpg" alt="Generate NFT Key" class="step-img">
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Set Up Your Vault</h3>
-                        <p>Customize your AI Vault according to your personal preferences and security requirements.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Manage Data</h3>
-                        <p>Securely upload data and utilize AI functions to analyze and manage your information.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3>Secure Access</h3>
-                        <p>Access your Vault securely anytime, anywhere using your NFT key.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="section">
+    <h2>📅 Roadmap Highlights</h2>
+    <ul>
+      <li><strong>Q2 2025:</strong> Launch full membership features & reward system</li>
+      <li><strong>Q3 2025:</strong> Genesis-only functions + physical vault integration</li>
+      <li><strong>Q4 2025:</strong> Expansion to external NFT partners</li>
+    </ul>
+  </div>
 
-        <!-- Team Section (New) -->
-        <section class="team-section">
-            <div class="container">
-                <h2 class="section-title">Meet Our Team</h2>
-                <p class="section-subtitle">The talented individuals behind SecureAI Vault</p>
-                <div class="team-image-container">
-                    <!-- 이미지 6: 디지털 도시 배경의 팀 이미지 -->
-                    <img src="team-image.jpg" alt="SecureAI Vault Team" class="team-img">
-                </div>
-                <p class="team-description">Our diverse team of blockchain experts, AI specialists, and security professionals are dedicated to building the most secure and innovative AI vault solution in the market.</p>
-                <a href="/about-team" class="btn btn-secondary">Learn More About Our Team</a>
-            </div>
-        </section>
-
-        <!-- Statistics Section -->
-        <section class="statistics">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h3 class="stat-number">10,000+</h3>
-                        <p class="stat-label">AI Vaults Created</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3 class="stat-number">99.99%</h3>
-                        <p class="stat-label">Uptime</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3 class="stat-number">100%</h3>
-                        <p class="stat-label">Data Security Record</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3 class="stat-number">3M+</h3>
-                        <p class="stat-label">NFT Tokens Created</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter Section -->
-        <section class="newsletter">
-            <div class="container">
-                <h2>Receive the latest updates and special NFT discounts</h2>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Bottom CTA -->
-        <section class="bottom-cta">
-            <div class="container">
-                <h2>Start your secure AI world today</h2>
-                <a href="/generate-key" class="btn btn-primary btn-large">Generate NFT Key</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <img src="logo.png" alt="SecureAI Vault Logo" class="footer-logo">
-                    <p>Your secure gateway to personalized AI experiences powered by NFT technology.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/careers">Careers</a></li>
-                        <li><a href="/press">Press</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/guides">Guides</a></li>
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/support">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="/terms">Terms of Service</a></li>
-                        <li><a href="/privacy">Privacy Policy</a></li>
-                        <li><a href="/security">Security</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 SecureAI Vault. All rights reserved.</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><img src="twitter-icon.svg" alt="Twitter"></a>
-                    <a href="#" class="social-icon"><img src="discord-icon.svg" alt="Discord"></a>
-                    <a href="#" class="social-icon"><img src="linkedin-icon.svg" alt="LinkedIn"></a>
-                    <a href="#" class="social-icon"><img src="github-icon.svg" alt="GitHub"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script>
+    document.getElementById('connectWalletBtn').addEventListener('click', async () => {
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          alert(`Wallet connected: ${accounts[0]}`);
+        } catch (error) {
+          alert('Connection failed.');
+        }
+      } else {
+        alert('MetaMask or web3 wallet not detected.');
+      }
+    });
+  </script>
 </body>
 </html>
+
