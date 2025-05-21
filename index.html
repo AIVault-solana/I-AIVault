@@ -4,225 +4,846 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIVault Membership Codex</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
+    :root {
+      --vault-dark: #1a1e2e;
+      --vault-darker: #12141d;
+      --vault-accent: #ffd700;
+      --vault-accent-hover: #ffcc00;
+      --vault-text: #e2e8f0;
+      --vault-highlight: #4c6ef5;
+      --vault-success: #10b981;
+      --vault-metal: #8892a0;
+      --vault-shadow: rgba(0, 0, 0, 0.5);
+    }
+    
+    * {
       margin: 0;
-      padding: 2rem;
-      background: linear-gradient(to right, #f5f7fa, #e2e8f0);
-      color: #2d3748;
+      padding: 0;
+      box-sizing: border-box;
     }
-    h1, h2, h3 {
-      color: #1a202c;
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--vault-darker);
+      color: var(--vault-text);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(26, 30, 46, 0.8) 0%, rgba(18, 20, 29, 0.8) 90%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23232738' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-align: center;
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 2rem 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-    th, td {
-      border: 1px solid #cbd5e0;
-      padding: 1rem;
-      text-align: center;
-      background: white;
-    }
-    th {
-      background: #edf2f7;
-      font-weight: 600;
-    }
-    .section {
-      margin-bottom: 3rem;
-    }
-    #wallet-connection {
+    
+    /* Header with Vault Door Effect */
+    .vault-header {
+      position: relative;
+      height: 300px;
+      background: linear-gradient(to bottom, var(--vault-dark), var(--vault-darker));
       display: flex;
-      justify-content: flex-end;
-      margin-bottom: 1rem;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 4px solid var(--vault-accent);
+      box-shadow: 0 10px 30px var(--vault-shadow);
     }
-    #connectWalletBtn {
-      background-color: #2b6cb0;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
+    
+    .vault-door {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: 
+        radial-gradient(circle at center, var(--vault-dark) 0%, var(--vault-darker) 80%),
+        repeating-linear-gradient(0deg, var(--vault-metal) 0, var(--vault-metal) 1px, transparent 1px, transparent 5px);
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+      transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
+      transform-origin: left;
+      transform: perspective(1200px) rotateY(0deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .vault-door.opened {
+      transform: perspective(1200px) rotateY(-85deg);
+    }
+    
+    .vault-wheel {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: 40px;
+      top: calc(50% - 60px);
+      background: radial-gradient(circle at center, var(--vault-metal), #5d6579);
+      border: 12px solid var(--vault-dark);
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 2s ease;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
     }
+    
+    .vault-wheel:hover {
+      transform: rotate(15deg);
+    }
+    
+    .vault-wheel::before {
+      content: "";
+      width: 60%;
+      height: 10px;
+      background: var(--vault-dark);
+      position: absolute;
+    }
+    
+    .vault-wheel::after {
+      content: "";
+      width: 10px;
+      height: 60%;
+      background: var(--vault-dark);
+      position: absolute;
+    }
+    
+    .vault-title {
+      position: relative;
+      z-index: 5;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--vault-accent);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+      letter-spacing: 4px;
+      text-align: center;
+      transform: translateZ(50px);
+      margin-bottom: 20px;
+    }
+    
+    .vault-subtitle {
+      position: relative;
+      z-index: 5;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: var(--vault-text);
+      letter-spacing: 2px;
+      text-align: center;
+      transform: translateZ(50px);
+    }
+    
+    /* Wallet Connection Button */
+    #wallet-connection {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+    
+    #connectWalletBtn {
+      background-color: transparent;
+      color: var(--vault-accent);
+      border: 2px solid var(--vault-accent);
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+    
     #connectWalletBtn:hover {
-      background-color: #2c5282;
+      background-color: var(--vault-accent);
+      color: var(--vault-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
     }
-    ul {
-      list-style: none;
-      padding-left: 1rem;
+    
+    #connectWalletBtn i {
+      font-size: 1.2rem;
     }
-    ul li::before {
-      content: "\2022";
-      color: #4299e1;
-      font-weight: bold;
+    
+    /* Main Content with Metallic Effect */
+    .main-content {
+      padding: 40px 0;
+      background: linear-gradient(135deg, rgba(26, 30, 46, 0.9) 0%, rgba(18, 20, 29, 0.9) 100%);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      margin: -50px 20px 40px;
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+    
+    .lock-icon-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .lock-icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--vault-accent);
+      color: var(--vault-dark);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .section {
+      margin-bottom: 60px;
+      padding: 0 30px;
+    }
+    
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--vault-accent);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+      padding-bottom: 10px;
+    }
+    
+    .section-title i {
+      color: var(--vault-accent);
+    }
+    
+    /* Custom Table */
+    .vault-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 20px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .vault-table thead tr {
+      background: linear-gradient(to right, var(--vault-accent), var(--vault-accent-hover));
+      color: var(--vault-dark);
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .vault-table th {
+      padding: 15px;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+    }
+    
+    .vault-table td {
+      padding: 15px;
+      text-align: center;
+      border: none;
+      color: var(--vault-text);
+      background-color: rgba(26, 30, 46, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .vault-table tbody tr:hover td {
+      background-color: rgba(40, 46, 72, 0.8);
+    }
+    
+    .vault-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    /* Tier Badges */
+    .tier-badge {
       display: inline-block;
-      width: 1em;
-      margin-left: -1em;
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    
+    .tier-standard {
+      background: linear-gradient(145deg, #5d6579, #3d4358);
+      color: #fff;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .tier-vip {
+      background: linear-gradient(145deg, #5464f1, #3f51b5);
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(84, 100, 241, 0.3);
+    }
+    
+    .tier-diamond {
+      background: linear-gradient(145deg, #6c52ee, #5642b9);
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(108, 82, 238, 0.3);
+    }
+    
+    .tier-genesis {
+      background: linear-gradient(145deg, var(--vault-accent), #e6b800);
+      color: var(--vault-dark);
+      box-shadow: 0 3px 8px rgba(255, 215, 0, 0.4);
+    }
+    
+    /* Check Icons */
+    .check-icon {
+      color: var(--vault-success);
+      font-size: 1.4rem;
+    }
+    
+    .cross-icon {
+      color: #ef4444;
+      font-size: 1.4rem;
+    }
+    
+    /* Benefits Section */
+    .benefits-list {
+      list-style: none;
+    }
+    
+    .benefits-list li {
+      position: relative;
+      padding: 15px 20px 15px 40px;
+      margin-bottom: 10px;
+      background: rgba(26, 30, 46, 0.6);
+      border-radius: 8px;
+      border-left: 4px solid var(--vault-accent);
+      transition: all 0.3s ease;
+    }
+    
+    .benefits-list li::before {
+      content: "\f14a";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: var(--vault-accent);
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+    
+    .benefits-list li:hover {
+      background: rgba(40, 46, 72, 0.6);
+      transform: translateX(5px);
+    }
+    
+    /* Access Logic Section */
+    .access-logic {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .access-card {
+      background: linear-gradient(145deg, rgba(40, 46, 72, 0.6), rgba(26, 30, 46, 0.6));
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .access-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 215, 0, 0.2);
+    }
+    
+    .access-card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(145deg, var(--vault-accent), #e6b800);
+      color: var(--vault-dark);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    .access-card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--vault-accent);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+    
+    .access-card-text {
+      color: var(--vault-text);
+      line-height: 1.6;
+    }
+    
+    /* Roadmap Section */
+    .roadmap {
+      position: relative;
+      padding-left: 40px;
+    }
+    
+    .roadmap::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--vault-accent), rgba(255, 215, 0, 0.1));
+      left: 0;
+      top: 0;
+      border-radius: 2px;
+    }
+    
+    .roadmap-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 30px;
+    }
+    
+    .roadmap-item::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--vault-accent);
+      left: -12px;
+      top: 0;
+      border: 4px solid var(--vault-darker);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
+    .roadmap-date {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--vault-accent);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    
+    .roadmap-content {
+      background: rgba(26, 30, 46, 0.6);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .roadmap-content:hover {
+      background: rgba(40, 46, 72, 0.6);
+      border-color: rgba(255, 215, 0, 0.2);
+    }
+    
+    /* Footer */
+    .vault-footer {
+      background: var(--vault-darker);
+      padding: 40px 0;
+      border-top: 4px solid var(--vault-accent);
+      text-align: center;
+      margin-top: 60px;
+    }
+    
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--vault-accent);
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
+    
+    .footer-text {
+      color: var(--vault-text);
+      margin-bottom: 30px;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(26, 30, 46, 0.8);
+      color: var(--vault-accent);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+    
+    .social-icon:hover {
+      background: var(--vault-accent);
+      color: var(--vault-dark);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+    
+    .copyright {
+      color: rgba(226, 232, 240, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .vault-title {
+        font-size: 2.5rem;
+      }
+      
+      .vault-wheel {
+        width: 80px;
+        height: 80px;
+        right: 20px;
+        top: calc(50% - 40px);
+        border-width: 8px;
+      }
+      
+      .main-content {
+        margin: -30px 10px 30px;
+      }
+      
+      .section {
+        padding: 0 15px;
+      }
+      
+      .access-logic {
+        grid-template-columns: 1fr;
+      }
+      
+      .vault-table thead {
+        display: none;
+      }
+      
+      .vault-table, .vault-table tbody, .vault-table tr, .vault-table td {
+        display: block;
+        width: 100%;
+      }
+      
+      .vault-table tr {
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      .vault-table td {
+        text-align: right;
+        padding: 12px 15px;
+        position: relative;
+        padding-left: 50%;
+      }
+      
+      .vault-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: 700;
+        text-align: left;
+      }
     }
   </style>
 </head>
 <body>
   <div id="wallet-connection">
-    <button id="connectWalletBtn">🔗 Connect Wallet</button>
-  </div>
-  <h1>AIVault Membership Codex</h1>
-
-  <div class="section">
-    <h2>📘 Membership Tiers</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Tier</th>
-          <th>NFT Name</th>
-          <th>Access Scope</th>
-          <th>Supply</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Standard</td>
-          <td>AIVault Standard NFT</td>
-          <td>Basic features, limited content</td>
-          <td>Unlimited</td>
-          <td>Beginner tier</td>
-        </tr>
-        <tr>
-          <td>VIP</td>
-          <td>AIVault VIP NFT</td>
-          <td>All content, event priority</td>
-          <td>1,000</td>
-          <td>Community active</td>
-        </tr>
-        <tr>
-          <td>Diamond</td>
-          <td>AIVault Diamond NFT</td>
-          <td>Admin-level access</td>
-          <td>100</td>
-          <td>Voting, rewards, airdrops</td>
-        </tr>
-        <tr>
-          <td>Genesis</td>
-          <td>AIVault Genesis NFT</td>
-          <td>Full access, strategic partner</td>
-          <td>4</td>
-          <td>Brand-level influence</td>
-        </tr>
-      </tbody>
-    </table>
+    <button id="connectWalletBtn">
+      <i class="fas fa-wallet"></i> CONNECT WALLET
+    </button>
   </div>
 
-  <div class="section">
-    <h2>🎁 Member Benefits</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Benefit</th>
-          <th>Standard</th>
-          <th>VIP</th>
-          <th>Diamond</th>
-          <th>Genesis</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Content Access</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Private Community</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Event Priority</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Airdrops & Rewards</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Voting Rights</td>
-          <td>❌</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Special Goods</td>
-          <td>❌</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Brand Proposal Rights</td>
-          <td>❌</td>
-          <td>❌</td>
-          <td>❌</td>
-          <td>✅</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="vault-header">
+    <div class="vault-door" id="vaultDoor">
+      <div class="vault-wheel" id="vaultWheel"></div>
+    </div>
+    <div class="container">
+      <h1 class="vault-title">AIVAULT</h1>
+      <p class="vault-subtitle">MEMBERSHIP CODEX</p>
+    </div>
   </div>
 
-  <div class="section">
-    <h2>🔐 Access Logic</h2>
-    <ul>
-      <li>Connect your wallet to verify NFT ownership</li>
-      <li>Tier-based routing to Member Dashboards</li>
-      <li>Diamond+ can access Admin Panel</li>
-      <li>Genesis holders unlock full system visibility</li>
-    </ul>
+  <div class="container">
+    <div class="main-content">
+      <div class="lock-icon-container">
+        <div class="lock-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><i class="fas fa-crown"></i> 멤버십 등급</h2>
+        <table class="vault-table">
+          <thead>
+            <tr>
+              <th>등급</th>
+              <th>NFT 이름</th>
+              <th>접근 범위</th>
+              <th>공급량</th>
+              <th>특이사항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="등급"><span class="tier-badge tier-standard">Standard</span></td>
+              <td data-label="NFT 이름">AIVault Standard NFT</td>
+              <td data-label="접근 범위">기본 기능, 제한된 콘텐츠</td>
+              <td data-label="공급량">무제한</td>
+              <td data-label="특이사항">입문자 등급</td>
+            </tr>
+            <tr>
+              <td data-label="등급"><span class="tier-badge tier-vip">VIP</span></td>
+              <td data-label="NFT 이름">AIVault VIP NFT</td>
+              <td data-label="접근 범위">모든 콘텐츠, 이벤트 우선권</td>
+              <td data-label="공급량">1,000</td>
+              <td data-label="특이사항">커뮤니티 활성</td>
+            </tr>
+            <tr>
+              <td data-label="등급"><span class="tier-badge tier-diamond">Diamond</span></td>
+              <td data-label="NFT 이름">AIVault Diamond NFT</td>
+              <td data-label="접근 범위">관리자 수준 접근</td>
+              <td data-label="공급량">100</td>
+              <td data-label="특이사항">투표권, 보상, 에어드랍</td>
+            </tr>
+            <tr>
+              <td data-label="등급"><span class="tier-badge tier-genesis">Genesis</span></td>
+              <td data-label="NFT 이름">AIVault Genesis NFT</td>
+              <td data-label="접근 범위">전체 접근, 전략적 파트너</td>
+              <td data-label="공급량">4</td>
+              <td data-label="특이사항">브랜드 레벨 영향력</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><i class="fas fa-gift"></i> 멤버 혜택</h2>
+        <table class="vault-table">
+          <thead>
+            <tr>
+              <th>혜택</th>
+              <th>Standard</th>
+              <th>VIP</th>
+              <th>Diamond</th>
+              <th>Genesis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="혜택">콘텐츠 접근</td>
+              <td data-label="Standard"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+            <tr>
+              <td data-label="혜택">비공개 커뮤니티</td>
+              <td data-label="Standard"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+            <tr>
+              <td data-label="혜택">이벤트 우선권</td>
+              <td data-label="Standard"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+            <tr>
+              <td data-label="혜택">에어드랍 & 보상</td>
+              <td data-label="Standard"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+            <tr>
+              <td data-label="혜택">투표권</td>
+              <td data-label="Standard"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+            <tr>
+              <td data-label="혜택">특별 상품</td>
+              <td data-label="Standard"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-check check-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+            <tr>
+              <td data-label="혜택">브랜드 제안 권한</td>
+              <td data-label="Standard"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="VIP"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="Diamond"><i class="fas fa-times cross-icon"></i></td>
+              <td data-label="Genesis"><i class="fas fa-check check-icon"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><i class="fas fa-key"></i> 접근 로직</h2>
+        <div class="access-logic">
+          <div class="access-card">
+            <div class="access-card-icon">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <h3 class="access-card-title">지갑 연결</h3>
+            <p class="access-card-text">자산 소유권을 검증하기 위해 지갑을 연결하세요. NFT 소유 여부를 확인합니다.</p>
+          </div>
+          
+          <div class="access-card">
+            <div class="access-card-icon">
+              <i class="fas fa-route"></i>
+            </div>
+            <h3 class="access-card-title">등급별 라우팅</h3>
+            <p class="access-card-text">소유한 NFT 등급에 따라 해당 멤버 대시보드로 자동 라우팅됩니다.</p>
+          </div>
+          
+          <div class="access-card">
+            <div class="access-card-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3 class="access-card-title">관리자 패널</h3>
+            <p class="access-card-text">Diamond 등급 이상 회원은 관리자 패널에 접근 가능합니다.</p>
+          </div>
+          
+          <div class="access-card">
+            <div class="access-card-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3 class="access-card-title">전체 시스템</h3>
+            <p class="access-card-text">Genesis 홀더는 전체 시스템 가시성이 허용됩니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><i class="fas fa-calendar-alt"></i> 로드맵 하이라이트</h2>
+        <div class="roadmap">
+          <div class="roadmap-item">
+            <div class="roadmap-date">Q2 2025</div>
+            <div class="roadmap-content">
+              <p>전체 멤버십 기능 및 보상 시스템 출시</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-date">Q3 2025</div>
+            <div class="roadmap-content">
+              <p>Genesis 전용 기능 + 물리적 금고 통합</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-date">Q4 2025</div>
+            <div class="roadmap-content">
+              <p>외부 NFT 파트너로 확장</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="section">
-    <h2>📅 Roadmap Highlights</h2>
-    <ul>
-      <li><strong>Q2 2025:</strong> Launch full membership features & reward system</li>
-      <li><strong>Q3 2025:</strong> Genesis-only functions + physical vault integration</li>
-      <li><strong>Q4 2025:</strong> Expansion to external NFT partners</li>
-    </ul>
-  </div>
+  <footer class="vault-footer">
+    <div class="container">
+      <div class="footer-logo">AIVAULT</div>
+      <p class="footer-text">디지털 자산의 안전한 보관소</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-medium"></i></a>
+      </div>
+      <p class="copyright">&copy; 2025 AIVault. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script>
+    // 금고 문 열기 효과
+    document.addEventListener('DOMContentLoaded', function() {
+      const vaultDoor = document.getElementById('vaultDoor');
+      const vaultWheel = document.getElementById('vaultWheel');
+      
+      setTimeout(() => {
+        vaultDoor.classList.add('opened');
+      }, 2000);
+      
+      vaultWheel.addEventListener('click', function() {
+        vaultDoor.classList.toggle('opened');
+      });
+    });
+    
+    // 지갑 연결 기능
     document.getElementById('connectWalletBtn').addEventListener('click', async () => {
       if (typeof window.ethereum !== 'undefined') {
         try {
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          alert(`Wallet connected: ${accounts[0]}`);
+          alert(`지갑 연결 성공: ${accounts[0]}`);
+          
+          // 지갑 연결 버튼 상태 변경
+          const connectBtn = document.getElementById('connectWalletBtn');
+          connectBtn.innerHTML = `<i class="fas fa-check-circle"></i> ${accounts[0].substring(0, 6)}...${accounts[0].substring(accounts[0].length - 4)}`;
+          connectBtn.style.backgroundColor = 'var(--vault-success)';
+          connectBtn.style.color = 'white';
+          connectBtn.style.borderColor = 'var(--vault-success)';
+          
         } catch (error) {
-          alert('Connection failed.');
+          alert('연결에 실패했습니다.');
         }
       } else {
-        alert('MetaMask or web3 wallet not detected.');
+        alert('MetaMask 또는 Web3 지갑이 감지되지 않았습니다.');
       }
+    });
+    
+    // 표 행 하이라이트 효과
+    const tableRows = document.querySelectorAll('.vault-table tbody tr');
+    tableRows.forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        row.style.transform = 'scale(1.02)';
+        row.style.transition = 'all 0.3s ease';
+      });
+      
+      row.addEventListener('mouseleave', () => {
+        row.style.transform = 'scale(1)';
+      });
     });
   </script>
 </body>
